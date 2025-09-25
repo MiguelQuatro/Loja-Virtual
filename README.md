@@ -1,2 +1,301 @@
 # Loja-Virtual
 Petshop:
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <!-- Define o conjunto de caracteres da página -->
+  <meta charset="UTF-8">
+  <!-- Configura a viewport para dispositivos móveis -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Título da página -->
+  <title>Mini Petshop Virtual</title>
+
+  <style>
+    /* ==================== Estilos Globais ==================== */
+    body {
+      font-family: Arial, sans-serif; /* Define a fonte da página */
+      background-image: url('img/fundo.jpg'); /* Imagem de fundo */
+      background-size: cover; /* Faz a imagem cobrir toda a tela */
+      background-position: center; /* Centraliza a imagem */
+      background-repeat: no-repeat; /* Evita repetição da imagem */
+      text-align: center; /* Centraliza o texto */
+      margin: 0; /* Remove margens padrão do body */
+      padding: 0; /* Remove padding padrão do body */
+    }
+
+    h1 {
+      margin-top: 20px; /* Espaçamento superior */
+      color: rgb(255, 178, 12); /* Cor do título */
+      padding: 10px 20px; /* Espaçamento interno */
+      display: inline-block; /* Faz o h1 se comportar como bloco inline */
+    }
+
+    .fundo-solido {
+      background-color: #eec555; /* Cor de fundo do elemento */
+      color: white; /* Cor do texto */
+      padding: 10px 20px; /* Espaçamento interno */
+      display: inline-block; /* Faz o elemento se comportar como bloco inline */
+      border-radius: 8px; /* Bordas arredondadas */
+    }
+
+    /* ==================== Cabeçalho e Carrinho ==================== */
+    header {
+      display: flex; /* Flexbox para alinhar itens */
+      justify-content: flex-end; /* Alinha itens à direita */
+      align-items: center; /* Alinha itens verticalmente */
+      padding: 10px 20px; /* Espaçamento interno */
+    }
+
+    .cart-icon-container {
+      position: relative; /* Permite posicionamento absoluto do contador */
+      cursor: pointer; /* Muda cursor para indicar interatividade */
+    }
+
+    .cart-icon {
+      width: 40px; /* Largura do ícone do carrinho */
+      height: auto; /* Mantém proporção */
+    }
+
+    .cart-count {
+      position: absolute; /* Posiciona em relação ao container */
+      top: -8px; /* Ajuste vertical */
+      right: -8px; /* Ajuste horizontal */
+      background: red; /* Cor de fundo do contador */
+      color: white; /* Cor do texto do contador */
+      border-radius: 50%; /* Deixa em forma de círculo */
+      padding: 2px 6px; /* Espaçamento interno do contador */
+      font-size: 12px; /* Tamanho da fonte */
+      font-weight: bold; /* Fonte em negrito */
+    }
+
+    /* ==================== Modal do Carrinho ==================== */
+    .cart-overlay {
+      display: none; /* Inicialmente oculto */
+      position: fixed; /* Fixa na tela inteira */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5); /* Fundo semitransparente */
+      justify-content: center; /* Centraliza horizontalmente */
+      align-items: center; /* Centraliza verticalmente */
+      z-index: 2000; /* Fica acima dos outros elementos */
+    }
+
+    .cart-modal {
+      background: white; /* Fundo do modal */
+      padding: 20px; /* Espaçamento interno */
+      border-radius: 10px; /* Bordas arredondadas */
+      width: 300px; /* Largura fixa */
+      max-width: 90%; /* Responsivo */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3); /* Sombra */
+    }
+
+    .cart-header {
+      display: flex; /* Flexbox para cabeçalho */
+      justify-content: space-between; /* Espaça itens */
+      align-items: center; /* Alinha verticalmente */
+    }
+
+    .close-cart {
+      cursor: pointer; /* Indica que é clicável */
+      font-size: 20px; /* Tamanho da fonte */
+      font-weight: bold; /* Negrito */
+    }
+
+    /* ==================== Grid de Produtos ==================== */
+    .container {
+      display: grid; /* Grid para organizar os cards */
+      grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+      gap: 20px; /* Espaçamento entre cards */
+      padding: 20px; /* Espaçamento interno */
+      max-width: 1000px; /* Largura máxima da área */
+      margin: 0 auto; /* Centraliza horizontalmente */
+    }
+
+    .card {
+      background: white; /* Fundo do card */
+      border-radius: 10px; /* Bordas arredondadas */
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* Sombra do card */
+      padding: 5px; /* Espaçamento interno */
+      display: flex; /* Flexbox para alinhar conteúdo */
+      flex-direction: column; /* Itens em coluna */
+      align-items: center; /* Centraliza itens */
+      transition: transform 0.2s ease-in-out; /* Animação ao passar mouse */
+    }
+
+    .card:hover {
+      transform: scale(1.05); /* Aumenta levemente ao passar o mouse */
+    }
+
+    .card img {
+      width: 100%; /* Largura total do card */
+      max-width: 150px; /* Limita tamanho da imagem */
+      border-radius: 10px; /* Bordas arredondadas */
+    }
+
+    button {
+      margin-top: 8px; /* Espaço acima do botão */
+      padding: 8px 12px; /* Espaçamento interno */
+      border: none; /* Remove borda padrão */
+      border-radius: 5px; /* Bordas arredondadas */
+      background-color: orange; /* Cor do botão */
+      color: white; /* Cor do texto */
+      font-weight: bold; /* Texto em negrito */
+      cursor: pointer; /* Indica que é clicável */
+      transition: background 0.3s; /* Animação ao mudar cor */
+    }
+
+    button:hover:enabled {
+      background-color: darkorange; /* Cor ao passar mouse */
+    }
+
+    button:disabled {
+      background-color: gray; /* Cor botão desabilitado */
+      cursor: not-allowed; /* Cursor proibido */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ==================== Cabeçalho com Carrinho ==================== -->
+  <header>
+    <div class="cart-icon-container">
+      <img src="img/carrinho.png" alt="Carrinho de Compras" class="cart-icon" onclick="toggleCart()">
+      <span class="cart-count">0</span> <!-- Quantidade de produtos no carrinho -->
+    </div>
+  </header>
+
+  <!-- ==================== Título e Descrição ==================== -->
+  <h1><strong>Mini Petshop Virtual</strong></h1><br>
+  <p class="fundo-solido">Selecione o produto que deseja comprar:</p>  
+
+  <!-- ==================== Lista de Produtos ==================== -->
+  <div class="container">
+    <!-- Card de Produto -->
+    <div class="card">
+      <img src="img/produto1.jpg" alt="Produto 1">
+      <h3>Ossinho</h3>
+      <p>R$ 4,50</p>
+      <p>Em estoque</p>
+      <button onclick="comprar('Ossinho')">Comprar</button>
+    </div>
+
+    <!-- Card de Produto -->
+    <div class="card">
+      <img src="img/produto2.jpg" alt="Produto 2">
+      <h3>Petiscos de Carne</h3>
+      <p>R$ 5,90</p>
+      <p>Em estoque</p>
+      <button onclick="comprar('Petiscos de Carne')">Comprar</button>
+    </div>
+
+    <!-- Card de Produto -->
+    <div class="card">
+      <img src="img/produto3.jpg" alt="Produto 3">
+      <h3>Mix Saudável</h3>
+      <p>R$ 6,00</p>
+      <p>Em estoque</p>
+      <button onclick="comprar('Mix Saudável')">Comprar</button>
+    </div>
+
+    <!-- Card de Produto Fora de Estoque -->
+    <div class="card">
+      <img src="img/produto4.jpg" alt="Produto 4">
+      <h3>Palitos de Limpeza Dental</h3>
+      <p>R$ 4,50</p>
+      <p style="color:red;">Fora de estoque</p>
+      <button disabled>Indisponível</button> <!-- Botão desabilitado -->
+    </div>
+    <div class="card">
+      <img src="img/produto5.jpg" alt="Produto 5">
+      <h3>Produto 5</h3>
+      <p>R$ 10,00</p>
+      <p>Em estoque</p>
+      <button onclick="comprar('Produto 5')">Comprar</button>
+    </div>
+
+    <div class="card">
+      <img src="img/produto6.jpg" alt="Produto 6">
+      <h3>Ração Premier</h3>
+      <p>R$ 210,00</p>
+      <p>Em estoque</p>
+      <button onclick="comprar('Ração Premier')">Comprar</button>
+    </div>
+
+    <div class="card">
+      <img src="img/produto7.jpg" alt="Produto 7">
+      <h3>Ração para Idosos</h3>
+      <p>R$ 131,90</p>
+      <p>Em estoque</p>
+      <button onclick="comprar('Ração para Idosos')">Comprar</button>
+    </div>
+
+    <div class="card">
+      <img src="img/produto8.jpg" alt="Produto 8">
+      <h3>Ração para Filhotes</h3>
+      <p>R$ 124,60</p>
+      <p>Em estoque</p>
+      <button onclick="comprar('Ração para Filhotes')">Comprar</button>
+    </div>
+
+    <div class="card">
+      <img src="img/produto9.jpg" alt="Produto 9">
+      <h3>Produto 9</h3>
+      <p>R$ 100,00</p>
+      <p>Em estoque</p>
+      <button onclick="comprar('Produto 9')">Comprar</button>
+    </div>
+
+    <div class="card">
+      <img src="img/produto10.jpg" alt="Produto 10">
+      <h3>Produto 10</h3>
+      <p style="color:red;">Fora de estoque</p>
+      <button disabled>Indisponível</button>
+    </div>
+
+    <div class="card">
+      <img src="img/produto11.jpg" alt="Produto 11">
+      <h3>Produto 11</h3>
+      <p style="color:red;">Fora de estoque</p>
+      <button disabled>Indisponível</button>
+    </div>
+
+    <div class="card">
+      <img src="img/produto12.jpg" alt="Produto 12">
+      <h3>Produto 12</h3>
+      <p style="color:red;">Fora de estoque</p>
+      <button disabled>Indisponível</button>
+    </div>
+  </div>
+
+  <!-- ==================== Modal do Carrinho ==================== -->
+  <div class="cart-overlay" id="cartOverlay">
+    <div class="cart-modal">
+      <div class="cart-header">
+        <h2>Seu Carrinho</h2>
+        <span class="close-cart" onclick="toggleCart()">&times;</span>
+      </div>
+      <div class="cart-items"></div> <!-- Produtos adicionados ao carrinho aparecerão aqui -->
+      <div class="cart-footer">
+        <h3>Total: R$ <span class="cart-total">0.00</span></h3>
+        <button class="checkout-btn">Finalizar Compra</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Script JavaScript ==================== -->
+  <script>
+    // Função que é chamada quando o usuário compra um produto
+    function comprar(produto) {
+      alert("Você comprou: " + produto); // Mostra um alerta com o produto comprado
+    }
+
+    // Função para abrir/fechar o modal do carrinho
+    function toggleCart() {
+      const overlay = document.getElementById('cartOverlay');
+      overlay.style.display = (overlay.style.display === 'flex') ? 'none' : 'flex';
+    }
+  </script>
+</body>
+</html>
