@@ -1,4 +1,6 @@
-  body {
+<head>
+  <style>
+    body {
       font-family: Arial, sans-serif; /* Define a fonte da página */
       background-image: url('img/fundo.jpg'); /* Imagem de fundo */
       background-size: cover; /* Faz a imagem cobrir toda a tela */
