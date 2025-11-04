@@ -1,9 +1,7 @@
-<head>
-  <style>
-
+<style>
     body {
       font-family: Arial, sans-serif; /* Define a fonte da página */
-      background-image: url('img/fundo.jpg'); /* Imagem de fundo */
+      background-image: url('img/fundoA.jpg'); /* Imagem de fundo */
       background-size: cover; /* Faz a imagem cobrir toda a tela */
       background-position: center; /* Centraliza a imagem */
       background-repeat: no-repeat; /* Evita repetição da imagem */
@@ -13,21 +11,27 @@
     }
 
     h1 {
-      margin-top: 20px; /* Espaçamento superior */
-      color: rgb(255, 178, 12); /* Cor do título */
-      padding: 10px 20px; /* Espaçamento interno */
-      display: inline-block; /* Faz o h1 se comportar como bloco inline */
+    font-family: 'Poppins', sans-serif; /* fonte moderna */
+    font-weight: 700;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #ecc67fff, #fce879ff); /* degradê bonito */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px black;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
     }
 
     .fundo-solido {
-      background-color: #eec555; /* Cor de fundo do elemento */
-      color: white; /* Cor do texto */
+      background-color: #ffbb00ff; /* Cor de fundo do elemento */
+      color: black; /* Cor do texto */
       padding: 10px 20px; /* Espaçamento interno */
       display: inline-block; /* Faz o elemento se comportar como bloco inline */
-      border-radius: 8px; /* Bordas arredondadas */
+      border-radius: 10px; /* Bordas arredondadas */
     }
 
-    /* ==================== Cabeçalho e Carrinho ==================== */
+    /* Cabeçalho e Carrinho */
     header {
       display: flex; /* Flexbox para alinhar itens */
       justify-content: flex-end; /* Alinha itens à direita */
@@ -39,12 +43,10 @@
       position: relative; /* Permite posicionamento absoluto do contador */
       cursor: pointer; /* Muda cursor para indicar interatividade */
     }
-
     .cart-icon {
       width: 40px; /* Largura do ícone do carrinho */
       height: auto; /* Mantém proporção */
     }
-
     .cart-count {
       position: absolute; /* Posiciona em relação ao container */
       top: -8px; /* Ajuste vertical */
@@ -56,8 +58,7 @@
       font-size: 12px; /* Tamanho da fonte */
       font-weight: bold; /* Fonte em negrito */
     }
-
-    /* ==================== Modal do Carrinho ==================== */
+    /* Modal do Carrinho */
     .cart-overlay {
       display: none; /* Inicialmente oculto */
       position: fixed; /* Fixa na tela inteira */
@@ -70,7 +71,6 @@
       align-items: center; /* Centraliza verticalmente */
       z-index: 2000; /* Fica acima dos outros elementos */
     }
-
     .cart-modal {
       background: white; /* Fundo do modal */
       padding: 20px; /* Espaçamento interno */
@@ -79,7 +79,6 @@
       max-width: 90%; /* Responsivo */
       box-shadow: 0 2px 8px rgba(0,0,0,0.3); /* Sombra */
     }
-
     .cart-header {
       display: flex; /* Flexbox para cabeçalho */
       justify-content: space-between; /* Espaça itens */
@@ -92,7 +91,7 @@
       font-weight: bold; /* Negrito */
     }
 
-    /* ==================== Grid de Produtos ==================== */
+    /* Grid de Produtos */
     .container {
       display: grid; /* Grid para organizar os cards */
       grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
@@ -102,8 +101,9 @@
       margin: 0 auto; /* Centraliza horizontalmente */
     }
 
+
     .card {
-      background: white; /* Fundo do card */
+      background: lightblue; /* Fundo do card */
       border-radius: 10px; /* Bordas arredondadas */
       box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* Sombra do card */
       padding: 5px; /* Espaçamento interno */
@@ -112,16 +112,20 @@
       align-items: center; /* Centraliza itens */
       transition: transform 0.2s ease-in-out; /* Animação ao passar mouse */
     }
-
     .card:hover {
       transform: scale(1.05); /* Aumenta levemente ao passar o mouse */
     }
-
     .card img {
       width: 100%; /* Largura total do card */
       max-width: 150px; /* Limita tamanho da imagem */
       border-radius: 10px; /* Bordas arredondadas */
     }
+    .cart-items {
+      max-height: 200px; /* limite de altura */
+      overflow-y: auto;  /* ativa a barra de rolagem */
+       padding-right: 5px;
+    }
+
 
     button {
       margin-top: 8px; /* Espaço acima do botão */
@@ -134,14 +138,47 @@
       cursor: pointer; /* Indica que é clicável */
       transition: background 0.3s; /* Animação ao mudar cor */
     }
-
     button:hover:enabled {
-      background-color: darkorange; /* Cor ao passar mouse */
+      background-color: darkred; /* Cor ao passar mouse */
     }
-
     button:disabled {
       background-color: gray; /* Cor botão desabilitado */
       cursor: not-allowed; /* Cursor proibido */
     }
+
+    .mensagem-adicionado {
+      position: fixed;
+      top: 15%;
+      right: 5%;
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      z-index: 9999;
+      animation: fadeInOut 2s ease;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(-20px); }
+      10%, 90% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-20px); }
+    }
+
+    .limpar-carrinho {
+      margin-top: 10px;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .limpar-carrinho:hover {
+      background-color: #a71d2a;
+    }
   </style>
-</head>
