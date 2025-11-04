@@ -1,9 +1,7 @@
-<title>Mini Petshop Virtual</title>
-
-</head>
-
 <body>
-  <!-- ==================== Cabeçalho com Carrinho ==================== -->
+    <title>Mini Petshop Virtual</title>
+<body>
+  <!-- Cabeçalho com Carrinho -->
   <header>
     <div class="cart-icon-container">
       <img src="img/carrinho.png" alt="Carrinho de Compras" class="cart-icon" onclick="toggleCart()">
@@ -11,112 +9,84 @@
     </div>
   </header>
 
-  <!-- ==================== Título e Descrição ==================== -->
-  <h1><strong>Mini Petshop Virtual</strong></h1><br>
+  <!-- Título e Descrição -->
+  <h1>Boutique Animal Online</h1><br>
   <p class="fundo-solido">Selecione o produto que deseja comprar:</p>  
 
-  <!-- ==================== Lista de Produtos ==================== -->
+  <!-- Lista de Produtos -->
   <div class="container">
+  
     <!-- Card de Produto -->
     <div class="card">
       <img src="img/produto1.jpg" alt="Produto 1">
       <h3>Ossinho</h3>
-      <p>R$ 4,50</p>
       <p>Em estoque</p>
-      <button onclick="comprar('Ossinho')">Comprar</button>
+      <p>Preço: R$ <span class="preco">25.90</span></p>
+      <button class="btn btn-success comprar-btn">Comprar</button>
     </div>
 
     <!-- Card de Produto -->
     <div class="card">
       <img src="img/produto2.jpg" alt="Produto 2">
       <h3>Petiscos de Carne</h3>
-      <p>R$ 5,90</p>
       <p>Em estoque</p>
-      <button onclick="comprar('Petiscos de Carne')">Comprar</button>
+      <p>Preço: R$ <span class="preco">5.90</span></p>
+      <button class="btn btn-success comprar-btn">Comprar</button>
     </div>
 
     <!-- Card de Produto -->
     <div class="card">
       <img src="img/produto3.jpg" alt="Produto 3">
       <h3>Mix Saudável</h3>
-      <p>R$ 6,00</p>
       <p>Em estoque</p>
-      <button onclick="comprar('Mix Saudável')">Comprar</button>
+      <p>Preço: R$ <span class="preco">6.00</span></p>
+      <button class="btn btn-success comprar-btn">Comprar</button>
     </div>
 
     <!-- Card de Produto Fora de Estoque -->
     <div class="card">
       <img src="img/produto4.jpg" alt="Produto 4">
       <h3>Palitos de Limpeza Dental</h3>
-      <p>R$ 4,50</p>
       <p style="color:red;">Fora de estoque</p>
+      <p>R$ 4,50</p>
       <button disabled>Indisponível</button> <!-- Botão desabilitado -->
     </div>
+
     <div class="card">
       <img src="img/produto5.jpg" alt="Produto 5">
-      <h3>Produto 5</h3>
-      <p>R$ 10,00</p>
+      <h3>Degustação de Ração</h3>
       <p>Em estoque</p>
-      <button onclick="comprar('Produto 5')">Comprar</button>
+      <p>Preço: R$ <span class="preco">10.00</span></p>
+      <button class="btn btn-success comprar-btn">Comprar</button>
     </div>
 
     <div class="card">
       <img src="img/produto6.jpg" alt="Produto 6">
       <h3>Ração Premier</h3>
-      <p>R$ 210,00</p>
       <p>Em estoque</p>
-      <button onclick="comprar('Ração Premier')">Comprar</button>
+      <p>Preço: R$ <span class="preco">210.00</span></p>
+      <button class="btn btn-success comprar-btn">Comprar</button>
     </div>
 
     <div class="card">
       <img src="img/produto7.jpg" alt="Produto 7">
       <h3>Ração para Idosos</h3>
-      <p>R$ 131,90</p>
       <p>Em estoque</p>
-      <button onclick="comprar('Ração para Idosos')">Comprar</button>
+      <p>Preço: R$ <span class="preco">131.00</span></p>
+      <button class="btn btn-success comprar-btn">Comprar</button>
     </div>
 
     <div class="card">
       <img src="img/produto8.jpg" alt="Produto 8">
       <h3>Ração para Filhotes</h3>
-      <p>R$ 124,60</p>
       <p>Em estoque</p>
-      <button onclick="comprar('Ração para Filhotes')">Comprar</button>
+      <p>Preço: R$ <span class="preco">124.60</span></p>
+      <button class="btn btn-success comprar-btn">Comprar</button>
     </div>
 
-    <div class="card">
-      <img src="img/produto9.jpg" alt="Produto 9">
-      <h3>Produto 9</h3>
-      <p>R$ 100,00</p>
-      <p>Em estoque</p>
-      <button onclick="comprar('Produto 9')">Comprar</button>
-    </div>
-
-    <div class="card">
-      <img src="img/produto10.jpg" alt="Produto 10">
-      <h3>Produto 10</h3>
-      <p style="color:red;">Fora de estoque</p>
-      <button disabled>Indisponível</button>
-    </div>
-
-    <div class="card">
-      <img src="img/produto11.jpg" alt="Produto 11">
-      <h3>Produto 11</h3>
-      <p style="color:red;">Fora de estoque</p>
-      <button disabled>Indisponível</button>
-    </div>
-
-    <div class="card">
-      <img src="img/produto12.jpg" alt="Produto 12">
-      <h3>Produto 12</h3>
-      <p style="color:red;">Fora de estoque</p>
-      <button disabled>Indisponível</button>
-    </div>
-  </div>
-
-  <!-- ==================== Modal do Carrinho ==================== -->
+  <!-- Modal do Carrinho -->
   <div class="cart-overlay" id="cartOverlay">
-    <div class="cart-modal">
+    <div class="cart-modal"> <!-- ordem do modal-->
       <div class="cart-header">
         <h2>Seu Carrinho</h2>
         <span class="close-cart" onclick="toggleCart()">&times;</span>
@@ -124,23 +94,8 @@
       <div class="cart-items"></div> <!-- Produtos adicionados ao carrinho aparecerão aqui -->
       <div class="cart-footer">
         <h3>Total: R$ <span class="cart-total">0.00</span></h3>
+        <button class="limpar-carrinho" onclick="limparCarrinho()">Limpar Carrinho</button>
         <button class="checkout-btn">Finalizar Compra</button>
       </div>
     </div>
   </div>
-
-  <!-- ==================== Script JavaScript ==================== -->
-  <script>
-    // Função que é chamada quando o usuário compra um produto
-    function comprar(produto) {
-      alert("Você comprou: " + produto); // Mostra um alerta com o produto comprado
-    }
-
-    // Função para abrir/fechar o modal do carrinho
-    function toggleCart() {
-      const overlay = document.getElementById('cartOverlay');
-      overlay.style.display = (overlay.style.display === 'flex') ? 'none' : 'flex';
-    }
-  </script>
-</body>
-</html>
